@@ -18,11 +18,17 @@ public class PermCheck
      */
     public int solution( int[] A )
     {
+        // Early out to improve performance
         if ( A.length == 0 )
         {
             return 0;
         }
+        else if( A.length == 1 )
+        {
+            return 1;
+        }
 
+        // Sort a copy of the array to avoid side effects
         final int sortedArray[] = Arrays.copyOf( A, A.length );
         Arrays.sort( sortedArray );
 
