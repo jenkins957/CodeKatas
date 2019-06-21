@@ -1,4 +1,4 @@
-package net.beyondcoding.codingproblems.net.beyondcoding.codility;
+package net.beyondcoding.codility;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;

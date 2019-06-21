@@ -1,7 +1,8 @@
-package net.beyondcoding.codingproblems.net.beyondcoding.codility;
+package net.beyondcoding.codility;
+
+import static org.junit.Assert.*;
 
 import org.junit.Test;
-import static org.junit.Assert.assertEquals;
 
 public class MaxProductOfThreeTest
 {

@@ -1,7 +1,4 @@
-/*
- * Copyright 2019 Applied Card Technologies Ltd
- */
-package net.beyondcoding.codingproblems.net.beyondcoding.codility;
+package net.beyondcoding.codility;
 
 /**
  * @author mikej

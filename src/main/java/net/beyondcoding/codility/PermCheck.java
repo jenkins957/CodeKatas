@@ -1,6 +1,3 @@
-/*
- * Copyright 2019 Applied Card Technologies Ltd
- */
 package net.beyondcoding.codility;
 
 import java.util.Arrays;
