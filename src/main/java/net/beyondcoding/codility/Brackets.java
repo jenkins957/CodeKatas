@@ -14,14 +14,13 @@ public class Brackets
 
     private Stack<Character> openingCharacters = new Stack<>();
 
-    // Support brackets, opening and closing
-    // ensure open & closing characters are at same index in corresponding arrays
+    // Supported brackets. Ensure open & closing characters are at same index in corresponding arrays
     private static final List<Character> OPENING_BRACKETS = Arrays.asList( '(', '[', '{' );
     private static final List<Character> CLOSING_BRACKETS = Arrays.asList( ')', ']', '}' );
 
-    public int solution(final String brackets )
+    public int solution( final String brackets )
     {
-        for( char nextCharacter : brackets.toCharArray() )
+        for( final char nextCharacter : brackets.toCharArray() )
         {
             if( OPENING_BRACKETS.contains( nextCharacter ) )
             {
@@ -29,14 +28,7 @@ public class Brackets
             }
             else if ( CLOSING_BRACKETS.contains( nextCharacter ) )
             {
-                if( openingCharacters.isEmpty() )
-                {
-                    return NOT_VALID;
-                }
-
-                char openingChar = openingCharacters.pop();
-
-                if( !isClosingCharacter( openingChar, nextCharacter ) )
+                if( openingCharacters.isEmpty() || !isClosingCharacter( openingCharacters.pop(), nextCharacter ) )
                 {
                     return NOT_VALID;
                 }
@@ -48,9 +40,6 @@ public class Brackets
 
     private static boolean isClosingCharacter( char openingChar, char closingChar )
     {
-        final int indexOpening = OPENING_BRACKETS.indexOf( openingChar );
-        final int indexClosing = CLOSING_BRACKETS.indexOf( closingChar );
-
-        return indexOpening == indexClosing;
+        return OPENING_BRACKETS.indexOf( openingChar ) == CLOSING_BRACKETS.indexOf( closingChar );
     }
 }
