@@ -10,32 +10,12 @@ public class CyclicRotation
     {
         int rotatedArray[] = new int[A.length];
 
-        if( A.length <= 1 )
-        {
-            return A;
-        }
-
-        // Remove multiple full rotations, to get the true offset
-        int offset = K % A.length;
-
-        if( offset == 0 )
-        {
-            // nothing has changed!
-            return A;
-        }
-
         for( int i = 0; i < A.length; i++ )
         {
-            final int currentElement = A[i];
-            int newPosition = i + offset;
-            if( newPosition > A.length - 1 )
-            {
-                newPosition = newPosition - A.length;
-            }
-            rotatedArray[newPosition] = currentElement;
+            // allocate new position, taking wrap-around into account
+            rotatedArray[( i + K ) % A.length] = A[i];
         }
 
-        // return a copy of the array
         return rotatedArray;
     }
 }
