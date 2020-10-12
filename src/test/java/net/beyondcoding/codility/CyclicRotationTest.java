@@ -11,6 +11,7 @@ public class CyclicRotationTest
 {
     private CyclicRotation cyclicRotation;
     private static final int ONE_ELEMENT_ARRAY[] = { 1 };
+    private static final int TWO_ELEMENT_ARRAY[] = { 1, 2 };
     private static final int THREE_ELEMENT_ARRAY[] = { 1, 2, 3 };
 
     @Before
@@ -20,34 +21,78 @@ public class CyclicRotationTest
     }
 
     @Test
-    public void shouldRotateOneElementArrayToRightBy0Places()
+    public void shouldNotRotateEmptyArray()
     {
-        final int expected[] = { 1 };
+        final int expected[] = { };
 
-        final int[] result = cyclicRotation.solution( ONE_ELEMENT_ARRAY, 0 );
+        final int[] result = cyclicRotation.solution( new int[0], 0 );
         Assert.assertArrayEquals( expected, result );
     }
 
     @Test
-    public void shouldRotateOneElementArrayToRightBy1Place()
+    public void shouldNotRotateOneElementArray()
     {
         final int expected[] = { 1 };
 
-        final int[] result = cyclicRotation.solution( ONE_ELEMENT_ARRAY, 1 );
+        int[] result = cyclicRotation.solution( ONE_ELEMENT_ARRAY, 0 );
+        Assert.assertArrayEquals( expected, result );
+
+        result = cyclicRotation.solution( ONE_ELEMENT_ARRAY, 1 );
+        Assert.assertArrayEquals( expected, result );
+
+        result = cyclicRotation.solution( ONE_ELEMENT_ARRAY, 2 );
         Assert.assertArrayEquals( expected, result );
     }
 
     @Test
-    public void shouldRotateOneElementArrayToRightBy2Places()
+    public void shouldRotateTwoElementArrayBy1Place()
     {
-        final int expected[] = { 1 };
+        final int expected[] = { 2, 1 };
 
-        final int[] result = cyclicRotation.solution( ONE_ELEMENT_ARRAY, 2 );
+        final int[] result = cyclicRotation.solution( TWO_ELEMENT_ARRAY, 1 );
         Assert.assertArrayEquals( expected, result );
     }
 
     @Test
-    public void shouldRotateThreeElementArrayToRightBy2Places()
+    public void shouldRotateTwoElementArrayBy2Places()
+    {
+        // 2 element array rotated twice ends up in same place!
+        final int expected[] = { 1, 2 };
+
+        final int[] result = cyclicRotation.solution( TWO_ELEMENT_ARRAY, 2 );
+        Assert.assertArrayEquals( expected, result );
+    }
+
+    @Test
+    public void shouldRotateTwoElementArrayBy3Places()
+    {
+        final int expected[] = { 2, 1 };
+
+        final int[] result = cyclicRotation.solution( TWO_ELEMENT_ARRAY, 3 );
+        Assert.assertArrayEquals( expected, result );
+    }
+
+    @Test
+    public void shouldRotateTwoElementArrayBy4Places()
+    {
+        // 2 element array rotated four times ends up in same place!
+        final int expected[] = { 1, 2 };
+
+        final int[] result = cyclicRotation.solution( TWO_ELEMENT_ARRAY, 4 );
+        Assert.assertArrayEquals( expected, result );
+    }
+
+    @Test
+    public void shouldRotateThreeElementArrayBy1Place()
+    {
+        final int expected[] = { 3, 1, 2 };
+
+        final int[] result = cyclicRotation.solution( THREE_ELEMENT_ARRAY, 1 );
+        Assert.assertArrayEquals( expected, result );
+    }
+
+    @Test
+    public void shouldRotateThreeElementArrayBy2Places()
     {
         final int expected[] = { 2, 3, 1 };
 
@@ -56,8 +101,9 @@ public class CyclicRotationTest
     }
 
     @Test
-    public void shouldRotateThreeElementArrayToRightBy3Place()
+    public void shouldRotateThreeElementArrayBy3Places()
     {
+        // back to same place
         final int expected[] = { 1, 2, 3 };
 
         final int[] result = cyclicRotation.solution( THREE_ELEMENT_ARRAY, 3 );
@@ -65,7 +111,7 @@ public class CyclicRotationTest
     }
 
     @Test
-    public void shouldRotateThreeElementArrayToRightBy4Places()
+    public void shouldRotateThreeElementArrayBy4Places()
     {
         final int expected[] = { 3, 1, 2 };
 
@@ -73,49 +119,85 @@ public class CyclicRotationTest
         Assert.assertArrayEquals( expected, result );
     }
 
-    @Test
-    public void shouldRotateThreeElementArrayToRightBy5Places()
-    {
-        final int expected[] = { 2, 3, 1 };
-
-        final int[] result = cyclicRotation.solution( THREE_ELEMENT_ARRAY, 5 );
-        Assert.assertArrayEquals( expected, result );
-    }
-
-    @Test
-    public void shouldRotateThreeElementArrayToRightBy7Places()
-    {
-        final int expected[] = { 3, 1, 2 };
-
-        final int[] result = cyclicRotation.solution( THREE_ELEMENT_ARRAY, 7 );
-        Assert.assertArrayEquals( expected, result );
-    }
-
-    @Test
-    public void shouldRotateThreeElementArrayToRightBy9Places()
-    {
-        final int expected[] = { 1, 2, 3 };
-
-        final int[] result = cyclicRotation.solution( THREE_ELEMENT_ARRAY, 9 );
-        Assert.assertArrayEquals( expected, result );
-    }
-
-    @Test
-    public void shouldRotateThreeElementArrayToRightBy10Places()
-    {
-        final int expected[] = { 3, 1, 2 };
-
-        final int[] result = cyclicRotation.solution( THREE_ELEMENT_ARRAY, 10 );
-        Assert.assertArrayEquals( expected, result );
-    }
-
-    @Test
-    public void shouldReturnEmptyArrayWhenInputArrayIsEmpty()
-    {
-        final int emptyArray[] = new int[ 0 ];
-        final int expected[] = new int[ 0 ];
-
-        final int[] result = cyclicRotation.solution( emptyArray, 1 );
-        Assert.assertArrayEquals( expected, result );
-    }
+//    @Test
+//    public void shouldRotateOneElementArrayToRightBy2Places()
+//    {
+//        final int expected[] = { 1 };
+//
+//        final int[] result = cyclicRotation.solution( ONE_ELEMENT_ARRAY, 2 );
+//        Assert.assertArrayEquals( expected, result );
+//    }
+//
+//    @Test
+//    public void shouldRotateThreeElementArrayToRightBy2Places()
+//    {
+//        final int expected[] = { 2, 3, 1 };
+//
+//        final int[] result = cyclicRotation.solution( THREE_ELEMENT_ARRAY, 2 );
+//        Assert.assertArrayEquals( expected, result );
+//    }
+//
+//    @Test
+//    public void shouldRotateThreeElementArrayToRightBy3Place()
+//    {
+//        final int expected[] = { 1, 2, 3 };
+//
+//        final int[] result = cyclicRotation.solution( THREE_ELEMENT_ARRAY, 3 );
+//        Assert.assertArrayEquals( expected, result );
+//    }
+//
+//    @Test
+//    public void shouldRotateThreeElementArrayToRightBy4Places()
+//    {
+//        final int expected[] = { 3, 1, 2 };
+//
+//        final int[] result = cyclicRotation.solution( THREE_ELEMENT_ARRAY, 4 );
+//        Assert.assertArrayEquals( expected, result );
+//    }
+//
+//    @Test
+//    public void shouldRotateThreeElementArrayToRightBy5Places()
+//    {
+//        final int expected[] = { 2, 3, 1 };
+//
+//        final int[] result = cyclicRotation.solution( THREE_ELEMENT_ARRAY, 5 );
+//        Assert.assertArrayEquals( expected, result );
+//    }
+//
+//    @Test
+//    public void shouldRotateThreeElementArrayToRightBy7Places()
+//    {
+//        final int expected[] = { 3, 1, 2 };
+//
+//        final int[] result = cyclicRotation.solution( THREE_ELEMENT_ARRAY, 7 );
+//        Assert.assertArrayEquals( expected, result );
+//    }
+//
+//    @Test
+//    public void shouldRotateThreeElementArrayToRightBy9Places()
+//    {
+//        final int expected[] = { 1, 2, 3 };
+//
+//        final int[] result = cyclicRotation.solution( THREE_ELEMENT_ARRAY, 9 );
+//        Assert.assertArrayEquals( expected, result );
+//    }
+//
+//    @Test
+//    public void shouldRotateThreeElementArrayToRightBy10Places()
+//    {
+//        final int expected[] = { 3, 1, 2 };
+//
+//        final int[] result = cyclicRotation.solution( THREE_ELEMENT_ARRAY, 10 );
+//        Assert.assertArrayEquals( expected, result );
+//    }
+//
+//    @Test
+//    public void shouldReturnEmptyArrayWhenInputArrayIsEmpty()
+//    {
+//        final int emptyArray[] = new int[ 0 ];
+//        final int expected[] = new int[ 0 ];
+//
+//        final int[] result = cyclicRotation.solution( emptyArray, 1 );
+//        Assert.assertArrayEquals( expected, result );
+//    }
 }

@@ -1,37 +1,41 @@
 package net.beyondcoding.codility;
 
 /**
+ * https://app.codility.com/programmers/lessons/2-arrays/cyclic_rotation/
  * @author mikej
  */
 public class CyclicRotation
 {
     public int[] solution( int[] A, int K )
     {
-        // Empty array or
-        // Rotation will put array back in the same order
-        if ( A.length == 0 || K % A.length == 0 )
+        int rotatedArray[] = new int[A.length];
+
+        if( A.length <= 1 )
         {
             return A;
         }
 
-        final int[] shiftedArray = new int[ A.length ];
+        // Remove multiple full rotations, to get the true offset
+        int offset = K % A.length;
 
-        // Remove multiple full rotations, as this is wasted effort
-        final int noOfPlacesToShift = K % A.length;
-
-        int newIndex;
-        for ( int i = 0; i < A.length; i++ )
+        if( offset == 0 )
         {
-            newIndex = i + noOfPlacesToShift;
-
-            if ( newIndex > A.length - 1 )
-            {
-                newIndex -= A.length;
-            }
-
-            shiftedArray[ newIndex ] = A[ i ];
+            // nothing has changed!
+            return A;
         }
 
-        return shiftedArray;
+        for( int i = 0; i < A.length; i++ )
+        {
+            final int currentElement = A[i];
+            int newPosition = i + offset;
+            if( newPosition > A.length - 1 )
+            {
+                newPosition = newPosition - A.length;
+            }
+            rotatedArray[newPosition] = currentElement;
+        }
+
+        // return a copy of the array
+        return rotatedArray;
     }
 }
