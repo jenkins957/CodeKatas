@@ -7,9 +7,26 @@ import org.junit.Test;
 public class OddElementTest
 {
     @Test
-    public void shouldRotateArrayToRightBy1()
+    public void shouldReturnValueOfUnpairedElement_nopairs()
     {
-        int array[] = {1,1,1,1,3,3,3};
-        assertEquals( 3, OddElement.sumOddElements(array) );
+        final int array1[] = { 1 };
+        assertEquals( 1, OddElement.sumOddElements( array1 ) );
+
+        final int array2[] = { 99 };
+        assertEquals( 99, OddElement.sumOddElements( array2 ) );
+    }
+
+    @Test
+    public void shouldReturnValueOfUnpairedElement_one_pair()
+    {
+        final int array1[] = { 1, 1, 2 };
+        assertEquals( 2, OddElement.sumOddElements( array1 ) );
+    }
+
+    @Test
+    public void shouldReturnValueOfUnpairedElement_two_pair()
+    {
+        final int array1[] = { 1, 1, 2, 3, 3 };
+        assertEquals( 2, OddElement.sumOddElements( array1 ) );
     }
 }

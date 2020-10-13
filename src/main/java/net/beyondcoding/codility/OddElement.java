@@ -5,33 +5,32 @@ import java.util.Map;
 
 public class OddElement
 {
-    public static int sumOddElements(int[] A)
+    public static int sumOddElements( int[] A )
     {
-        int value = 0;
-        Map<Integer,Integer> pairs = new HashMap<>();
+        final Map<Integer, Integer> elements = new HashMap<>();
 
-        for( int i = 0; i < A.length; i++ )
+        for( int i : A )
         {
-            int count = 1;
-
-            if( pairs.containsKey(A[i]))
+            if( elements.containsKey( i ) )
             {
-                count = pairs.get(A[i]) + 1;
+                elements.put( i, elements.get( i ) + 1 );
             }
-
-            pairs.put(A[i], count);
-        }
-
-        for (Map.Entry<Integer, Integer> entry : pairs.entrySet()) {
-            int key = entry.getKey();
-            int count = entry.getValue();
-
-            if( count % 2 != 0 )
+            else
             {
-                value += key;
+                elements.put( i, 1 );
             }
         }
 
-        return value;
+        // can we dtop tjhis loop?
+
+        for ( Map.Entry<Integer, Integer> entry : elements.entrySet())
+        {
+            if( entry.getValue() % 2 != 0 )
+            {
+                return entry.getKey();
+            }
+        }
+
+        return -1;
     }
 }
