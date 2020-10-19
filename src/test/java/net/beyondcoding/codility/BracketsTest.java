@@ -70,6 +70,18 @@ public class BracketsTest
     }
 
     @Test
+    public void shouldNotBeValidNestingForSingleCharacterResetState()
+    {
+        /*
+         * Tests a bug - Each test case on its own passes,
+         * however when running both together, second one fails.
+         * The original code failed to clear out previous state
+         */
+        Assert.assertEquals( NOT_VALID, brackets.solution( "((" ) );
+        Assert.assertEquals( NOT_VALID, brackets.solution( "))" ) );
+    }
+
+    @Test
     public void shouldNotBeValidNestingForSingleCharacter_2()
     {
         Assert.assertEquals( NOT_VALID, brackets.solution( ")" ) );

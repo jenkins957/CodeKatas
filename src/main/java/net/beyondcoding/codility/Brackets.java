@@ -12,14 +12,14 @@ public class Brackets
     private static final int VALID = 1;
     private static final int NOT_VALID = 0;
 
-    private Stack<Character> openingCharacters = new Stack<>();
-
     // Supported brackets. Ensure open & closing characters are at same index in corresponding arrays
     private static final List<Character> OPENING_BRACKETS = Arrays.asList( '(', '[', '{' );
     private static final List<Character> CLOSING_BRACKETS = Arrays.asList( ')', ']', '}' );
 
     public int solution( final String brackets )
     {
+        final Stack<Character> openingCharacters = new Stack<>();
+
         for( final char nextCharacter : brackets.toCharArray() )
         {
             if( OPENING_BRACKETS.contains( nextCharacter ) )
