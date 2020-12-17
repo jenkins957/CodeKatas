@@ -1,6 +1,7 @@
 package net.beyondcoding.codility;
 
-import java.util.Arrays;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * @author mikej
@@ -20,24 +21,24 @@ public class PermCheck
         {
             return 0;
         }
-        else if( A.length == 1 )
-        {
-            return 1;
-        }
+        final Set<Integer> countOfElements = new HashSet<>();
 
-        // Sort a copy of the array to avoid side effects
-        final int sortedArray[] = Arrays.copyOf( A, A.length );
-        Arrays.sort( sortedArray );
-
-        int expectedValue = 0;
-        for ( int i = 0; i < sortedArray.length; i++ )
+        // elements from 1 to n once only
+        for ( int i = 0; i < A.length; i++ )
         {
-            if ( sortedArray[ i ] != expectedValue + 1 )
+            if ( countOfElements.contains( A[ i ] ) )
             {
                 return 0;
             }
+            countOfElements.add( A[ i ] );
+        }
 
-            expectedValue++;
+        for ( int i = 1; i <= A.length; i++ )
+        {
+            if ( !countOfElements.contains( i ) )
+            {
+                return 0;
+            }
         }
 
         return 1;

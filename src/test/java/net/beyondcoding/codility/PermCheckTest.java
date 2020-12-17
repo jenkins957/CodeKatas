@@ -27,6 +27,14 @@ public class PermCheckTest
     }
 
     @Test
+    public void shouldNotBeValidPermutationForSingleElement()
+    {
+        final int array[] = { 2 };
+
+        assertEquals( 0, permCheck.solution( array ) );
+    }
+
+    @Test
     public void shouldBeValidPermutationForThreeElementsInOrder()
     {
         final int array[] = { 1, 2, 3 };
